@@ -1,0 +1,13 @@
+data/raw/
+data/lake/
+data/exports/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+dist/
+.ipynb_checkpoints/
+.claude/
+.venv/
+venv/

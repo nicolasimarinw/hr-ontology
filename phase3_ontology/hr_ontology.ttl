@@ -1,0 +1,490 @@
+@prefix hr: <http://meridiantech.example.org/ontology/hr#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# Ontology Declaration
+# =============================================================================
+
+hr:Ontology a owl:Ontology ;
+    rdfs:label "Meridian Technologies HR Ontology" ;
+    rdfs:comment "A knowledge graph ontology for HR data spanning HRIS, ATS, Performance Management, and Compensation systems." ;
+    owl:versionInfo "1.0.0" .
+
+# =============================================================================
+# Top-Level Classes
+# =============================================================================
+
+hr:Agent a owl:Class ;
+    rdfs:label "Agent" ;
+    rdfs:comment "Any entity that can act or be acted upon in the HR domain." .
+
+hr:OrganizationalUnit a owl:Class ;
+    rdfs:label "Organizational Unit" ;
+    rdfs:comment "A structural unit within the organization hierarchy." .
+
+hr:Role a owl:Class ;
+    rdfs:label "Role" ;
+    rdfs:comment "A defined role or position type within the organization." .
+
+hr:Competency a owl:Class ;
+    rdfs:label "Competency" ;
+    rdfs:comment "A skill, certification, or capability." .
+
+hr:TalentProcess a owl:Class ;
+    rdfs:label "Talent Process" ;
+    rdfs:comment "An activity in a talent management workflow (recruiting, reviewing, etc.)." .
+
+hr:CompensationElement a owl:Class ;
+    rdfs:label "Compensation Element" ;
+    rdfs:comment "A component of employee total compensation." .
+
+hr:PerformanceCycle a owl:Class ;
+    rdfs:label "Performance Cycle" ;
+    rdfs:comment "A defined time period for performance evaluation." .
+
+hr:TemporalEvent a owl:Class ;
+    rdfs:label "Temporal Event" ;
+    rdfs:comment "A discrete event in an employee's lifecycle." .
+
+hr:SourceChannel a owl:Class ;
+    rdfs:label "Source Channel" ;
+    rdfs:comment "A recruiting source or channel through which candidates are sourced." .
+
+# =============================================================================
+# Agent Subclasses
+# =============================================================================
+
+hr:Person a owl:Class ;
+    rdfs:subClassOf hr:Agent ;
+    rdfs:label "Person" ;
+    rdfs:comment "A human individual in the HR system." .
+
+hr:Employee a owl:Class ;
+    rdfs:subClassOf hr:Person ;
+    rdfs:label "Employee" ;
+    rdfs:comment "A person employed by the organization." .
+
+hr:ActiveEmployee a owl:Class ;
+    rdfs:subClassOf hr:Employee ;
+    rdfs:label "Active Employee" ;
+    rdfs:comment "An employee currently employed." .
+
+hr:TerminatedEmployee a owl:Class ;
+    rdfs:subClassOf hr:Employee ;
+    rdfs:label "Terminated Employee" ;
+    rdfs:comment "An employee whose employment has ended." .
+
+hr:Candidate a owl:Class ;
+    rdfs:subClassOf hr:Person ;
+    rdfs:label "Candidate" ;
+    rdfs:comment "A person who has applied for a position." .
+
+# =============================================================================
+# Organizational Unit Subclasses
+# =============================================================================
+
+hr:Company a owl:Class ;
+    rdfs:subClassOf hr:OrganizationalUnit ;
+    rdfs:label "Company" ;
+    rdfs:comment "The top-level organization." .
+
+hr:Division a owl:Class ;
+    rdfs:subClassOf hr:OrganizationalUnit ;
+    rdfs:label "Division" ;
+    rdfs:comment "A major business division within the company." .
+
+hr:Department a owl:Class ;
+    rdfs:subClassOf hr:OrganizationalUnit ;
+    rdfs:label "Department" ;
+    rdfs:comment "A functional department within a division." .
+
+hr:Location a owl:Class ;
+    rdfs:subClassOf hr:OrganizationalUnit ;
+    rdfs:label "Location" ;
+    rdfs:comment "A physical or virtual work location." .
+
+# =============================================================================
+# Role Subclasses
+# =============================================================================
+
+hr:Position a owl:Class ;
+    rdfs:subClassOf hr:Role ;
+    rdfs:label "Position" ;
+    rdfs:comment "A specific job position within the organization." .
+
+hr:JobFamily a owl:Class ;
+    rdfs:subClassOf hr:Role ;
+    rdfs:label "Job Family" ;
+    rdfs:comment "A grouping of related positions (e.g., Engineering, Sales)." .
+
+hr:JobLevel a owl:Class ;
+    rdfs:subClassOf hr:Role ;
+    rdfs:label "Job Level" ;
+    rdfs:comment "A rank or seniority level (e.g., L1, M1, VP)." .
+
+# =============================================================================
+# Competency Subclasses
+# =============================================================================
+
+hr:Skill a owl:Class ;
+    rdfs:subClassOf hr:Competency ;
+    rdfs:label "Skill" ;
+    rdfs:comment "A technical or soft skill that can be assessed." .
+
+# =============================================================================
+# Talent Process Subclasses
+# =============================================================================
+
+hr:Requisition a owl:Class ;
+    rdfs:subClassOf hr:TalentProcess ;
+    rdfs:label "Requisition" ;
+    rdfs:comment "A job requisition to fill a position." .
+
+hr:Application a owl:Class ;
+    rdfs:subClassOf hr:TalentProcess ;
+    rdfs:label "Application" ;
+    rdfs:comment "A candidate's application to a specific requisition." .
+
+hr:Interview a owl:Class ;
+    rdfs:subClassOf hr:TalentProcess ;
+    rdfs:label "Interview" ;
+    rdfs:comment "An interview event for a candidate." .
+
+hr:Offer a owl:Class ;
+    rdfs:subClassOf hr:TalentProcess ;
+    rdfs:label "Offer" ;
+    rdfs:comment "A job offer extended to a candidate." .
+
+hr:PerformanceReview a owl:Class ;
+    rdfs:subClassOf hr:TalentProcess ;
+    rdfs:label "Performance Review" ;
+    rdfs:comment "A formal performance evaluation of an employee." .
+
+hr:Goal a owl:Class ;
+    rdfs:subClassOf hr:TalentProcess ;
+    rdfs:label "Goal" ;
+    rdfs:comment "A performance goal set for an employee." .
+
+# =============================================================================
+# Compensation Subclasses
+# =============================================================================
+
+hr:SalaryBand a owl:Class ;
+    rdfs:subClassOf hr:CompensationElement ;
+    rdfs:label "Salary Band" ;
+    rdfs:comment "A defined pay range for a job family and level combination." .
+
+hr:BaseSalary a owl:Class ;
+    rdfs:subClassOf hr:CompensationElement ;
+    rdfs:label "Base Salary" ;
+    rdfs:comment "An employee's base salary at a point in time." .
+
+hr:Bonus a owl:Class ;
+    rdfs:subClassOf hr:CompensationElement ;
+    rdfs:label "Bonus" ;
+    rdfs:comment "A bonus payment (annual, spot, signing)." .
+
+hr:EquityGrant a owl:Class ;
+    rdfs:subClassOf hr:CompensationElement ;
+    rdfs:label "Equity Grant" ;
+    rdfs:comment "A stock option or equity grant." .
+
+# =============================================================================
+# Temporal Event Subclasses
+# =============================================================================
+
+hr:HireEvent a owl:Class ;
+    rdfs:subClassOf hr:TemporalEvent ;
+    rdfs:label "Hire Event" ;
+    rdfs:comment "The event of hiring an employee." .
+
+hr:PromotionEvent a owl:Class ;
+    rdfs:subClassOf hr:TemporalEvent ;
+    rdfs:label "Promotion Event" ;
+    rdfs:comment "The event of promoting an employee." .
+
+hr:TransferEvent a owl:Class ;
+    rdfs:subClassOf hr:TemporalEvent ;
+    rdfs:label "Transfer Event" ;
+    rdfs:comment "The event of transferring an employee between departments." .
+
+hr:TerminationEvent a owl:Class ;
+    rdfs:subClassOf hr:TemporalEvent ;
+    rdfs:label "Termination Event" ;
+    rdfs:comment "The event of an employee leaving the organization." .
+
+# =============================================================================
+# Object Properties (Relationships)
+# =============================================================================
+
+# --- Organizational Structure ---
+
+hr:reportsTo a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Employee ;
+    rdfs:label "reports to" ;
+    rdfs:comment "The direct reporting relationship between an employee and their manager." .
+
+hr:belongsTo a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Department ;
+    rdfs:label "belongs to" ;
+    rdfs:comment "The department an employee is assigned to." .
+
+hr:partOf a owl:ObjectProperty ;
+    rdfs:domain hr:Department ;
+    rdfs:range hr:Division ;
+    rdfs:label "part of" ;
+    rdfs:comment "The division a department belongs to." .
+
+hr:locatedAt a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Location ;
+    rdfs:label "located at" ;
+    rdfs:comment "The work location of an employee." .
+
+hr:holdsPosition a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Position ;
+    rdfs:label "holds position" ;
+    rdfs:comment "The position currently held by an employee." .
+
+hr:positionIn a owl:ObjectProperty ;
+    rdfs:domain hr:Position ;
+    rdfs:range hr:Department ;
+    rdfs:label "position in" ;
+    rdfs:comment "The department a position belongs to." .
+
+hr:inJobFamily a owl:ObjectProperty ;
+    rdfs:domain hr:Position ;
+    rdfs:range hr:JobFamily ;
+    rdfs:label "in job family" ;
+    rdfs:comment "The job family a position belongs to." .
+
+hr:atLevel a owl:ObjectProperty ;
+    rdfs:domain hr:Position ;
+    rdfs:range hr:JobLevel ;
+    rdfs:label "at level" ;
+    rdfs:comment "The seniority level of a position." .
+
+# --- Skills ---
+
+hr:hasSkill a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Skill ;
+    rdfs:label "has skill" ;
+    rdfs:comment "A skill possessed by an employee." .
+
+hr:requiresSkill a owl:ObjectProperty ;
+    rdfs:domain hr:Position ;
+    rdfs:range hr:Skill ;
+    rdfs:label "requires skill" ;
+    rdfs:comment "A skill required for a position." .
+
+hr:demonstratesCompetency a owl:ObjectProperty ;
+    rdfs:domain hr:PerformanceReview ;
+    rdfs:range hr:Skill ;
+    rdfs:label "demonstrates competency" ;
+    rdfs:comment "A skill demonstrated during a performance review." .
+
+# --- Talent Acquisition ---
+
+hr:appliedFor a owl:ObjectProperty ;
+    rdfs:domain hr:Candidate ;
+    rdfs:range hr:Requisition ;
+    rdfs:label "applied for" ;
+    rdfs:comment "A candidate's application to a requisition." .
+
+hr:interviewedBy a owl:ObjectProperty ;
+    rdfs:domain hr:Candidate ;
+    rdfs:range hr:Employee ;
+    rdfs:label "interviewed by" ;
+    rdfs:comment "An interview conducted by an employee for a candidate." .
+
+hr:offeredTo a owl:ObjectProperty ;
+    rdfs:domain hr:Offer ;
+    rdfs:range hr:Candidate ;
+    rdfs:label "offered to" ;
+    rdfs:comment "A job offer extended to a candidate." .
+
+hr:fillsRequisition a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Requisition ;
+    rdfs:label "fills requisition" ;
+    rdfs:comment "An employee hired to fill a requisition." .
+
+hr:referredBy a owl:ObjectProperty ;
+    rdfs:domain hr:Candidate ;
+    rdfs:range hr:Employee ;
+    rdfs:label "referred by" ;
+    rdfs:comment "A candidate referred by an existing employee." .
+
+hr:sourcedFrom a owl:ObjectProperty ;
+    rdfs:domain hr:Candidate ;
+    rdfs:range hr:SourceChannel ;
+    rdfs:label "sourced from" ;
+    rdfs:comment "The recruiting channel through which a candidate was sourced." .
+
+hr:requisitionFor a owl:ObjectProperty ;
+    rdfs:domain hr:Requisition ;
+    rdfs:range hr:Department ;
+    rdfs:label "requisition for" ;
+    rdfs:comment "The department a requisition is opened for." .
+
+# --- Performance ---
+
+hr:reviewedIn a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:PerformanceReview ;
+    rdfs:label "reviewed in" ;
+    rdfs:comment "An employee's participation in a performance review." .
+
+hr:reviewedBy a owl:ObjectProperty ;
+    rdfs:domain hr:PerformanceReview ;
+    rdfs:range hr:Employee ;
+    rdfs:label "reviewed by" ;
+    rdfs:comment "The manager or peer who conducted the review." .
+
+hr:setGoal a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Goal ;
+    rdfs:label "set goal" ;
+    rdfs:comment "A goal assigned to an employee." .
+
+hr:partOfCycle a owl:ObjectProperty ;
+    rdfs:domain hr:PerformanceReview ;
+    rdfs:range hr:PerformanceCycle ;
+    rdfs:label "part of cycle" ;
+    rdfs:comment "The performance cycle a review belongs to." .
+
+hr:goalInCycle a owl:ObjectProperty ;
+    rdfs:domain hr:Goal ;
+    rdfs:range hr:PerformanceCycle ;
+    rdfs:label "goal in cycle" ;
+    rdfs:comment "The performance cycle a goal belongs to." .
+
+# --- Compensation ---
+
+hr:earnsBase a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:BaseSalary ;
+    rdfs:label "earns base" ;
+    rdfs:comment "An employee's base salary record." .
+
+hr:receivedBonus a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:Bonus ;
+    rdfs:label "received bonus" ;
+    rdfs:comment "A bonus received by an employee." .
+
+hr:grantedEquity a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:EquityGrant ;
+    rdfs:label "granted equity" ;
+    rdfs:comment "An equity grant received by an employee." .
+
+hr:inSalaryBand a owl:ObjectProperty ;
+    rdfs:domain hr:Position ;
+    rdfs:range hr:SalaryBand ;
+    rdfs:label "in salary band" ;
+    rdfs:comment "The salary band applicable to a position." .
+
+# --- Lifecycle Events ---
+
+hr:experiencedEvent a owl:ObjectProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range hr:TemporalEvent ;
+    rdfs:label "experienced event" ;
+    rdfs:comment "A lifecycle event experienced by an employee." .
+
+hr:promotedTo a owl:ObjectProperty ;
+    rdfs:domain hr:PromotionEvent ;
+    rdfs:range hr:Position ;
+    rdfs:label "promoted to" ;
+    rdfs:comment "The position an employee was promoted to." .
+
+hr:transferredFrom a owl:ObjectProperty ;
+    rdfs:domain hr:TransferEvent ;
+    rdfs:range hr:Department ;
+    rdfs:label "transferred from" ;
+    rdfs:comment "The department an employee transferred from." .
+
+hr:transferredTo a owl:ObjectProperty ;
+    rdfs:domain hr:TransferEvent ;
+    rdfs:range hr:Department ;
+    rdfs:label "transferred to" ;
+    rdfs:comment "The department an employee transferred to." .
+
+# =============================================================================
+# Datatype Properties (Attributes)
+# =============================================================================
+
+hr:employeeId a owl:DatatypeProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range xsd:string .
+
+hr:firstName a owl:DatatypeProperty ;
+    rdfs:domain hr:Person ;
+    rdfs:range xsd:string .
+
+hr:lastName a owl:DatatypeProperty ;
+    rdfs:domain hr:Person ;
+    rdfs:range xsd:string .
+
+hr:email a owl:DatatypeProperty ;
+    rdfs:domain hr:Person ;
+    rdfs:range xsd:string .
+
+hr:hireDate a owl:DatatypeProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range xsd:date .
+
+hr:birthDate a owl:DatatypeProperty ;
+    rdfs:domain hr:Person ;
+    rdfs:range xsd:date .
+
+hr:gender a owl:DatatypeProperty ;
+    rdfs:domain hr:Person ;
+    rdfs:range xsd:string .
+
+hr:ethnicity a owl:DatatypeProperty ;
+    rdfs:domain hr:Person ;
+    rdfs:range xsd:string .
+
+hr:status a owl:DatatypeProperty ;
+    rdfs:domain hr:Employee ;
+    rdfs:range xsd:string .
+
+hr:terminationDate a owl:DatatypeProperty ;
+    rdfs:domain hr:TerminatedEmployee ;
+    rdfs:range xsd:date .
+
+hr:terminationReason a owl:DatatypeProperty ;
+    rdfs:domain hr:TerminatedEmployee ;
+    rdfs:range xsd:string .
+
+hr:salaryAmount a owl:DatatypeProperty ;
+    rdfs:domain hr:BaseSalary ;
+    rdfs:range xsd:decimal .
+
+hr:rating a owl:DatatypeProperty ;
+    rdfs:domain hr:PerformanceReview ;
+    rdfs:range xsd:decimal .
+
+hr:score a owl:DatatypeProperty ;
+    rdfs:domain hr:Interview ;
+    rdfs:range xsd:decimal .
+
+hr:proficiencyLevel a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf (hr:hasSkill hr:demonstratesCompetency) ] ;
+    rdfs:range xsd:integer .
+
+hr:effectiveDate a owl:DatatypeProperty ;
+    rdfs:range xsd:date .
+
+hr:eventDate a owl:DatatypeProperty ;
+    rdfs:domain hr:TemporalEvent ;
+    rdfs:range xsd:date .
